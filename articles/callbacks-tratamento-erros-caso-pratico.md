@@ -2,7 +2,7 @@
 title: "Entendendo Callbacks e Tratamento de Erros: Um Caso Prático"
 description: "Aprenda como fazer dados 'viajarem' entre funções usando callbacks e implementar tratamento de erros eficiente com exemplos práticos"
 tags: ["javascript", "callbacks", "async", "error-handling", "tutorial"]
-date: "2024-01-30"
+date: "2025-09-08"
 author: "Maciel Alves"
 image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop"
 readTime: "7 min"
