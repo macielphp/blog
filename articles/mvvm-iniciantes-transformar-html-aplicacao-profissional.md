@@ -4,7 +4,7 @@ description: "Entenda como organizar seu código JavaScript de forma que ele 'co
 tags: ["mvvm", "javascript", "html", "arquitetura", "tutorial", "iniciantes"]
 date: "2024-02-05"
 author: "Maciel Alves"
-image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop"
+image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 readTime: "12 min"
 ---
 
@@ -14,7 +14,7 @@ readTime: "12 min"
 
 ---
 
-## 🎯 **O Problema que Todo Iniciante Enfrenta**
+## 🎯 O Problema que Todo Iniciante Enfrenta
 
 Você já se viu nesta situação?
 
@@ -49,30 +49,30 @@ function buscarVideos() {
 }
 ```
 
-**Resultado**: Código que funciona, mas é impossível de manter quando o projeto cresce!
+Resultado: Código que funciona, mas é impossível de manter quando o projeto cresce!
 
 ---
 
-## ✨ **A Solução: MVVM**
+## ✨ A Solução: MVVM
 
-MVVM é como ter um **assistente pessoal** que cuida de toda a comunicação entre seu HTML e JavaScript.
+MVVM é como ter um assistente pessoal que cuida de toda a comunicação entre seu HTML e JavaScript.
 
-### **O que significa MVVM?**
-- **M**odel = Os dados (vídeos, usuários, etc.)
-- **V**iew = O HTML (o que o usuário vê)
-- **V**iewModel = O assistente que conecta tudo
+### O que significa MVVM?
+- Model = Os dados (vídeos, usuários, etc.)
+- View = O HTML (o que o usuário vê)
+- ViewModel = O assistente que conecta tudo
 
-### **Analogia do Dia a Dia:**
+### Analogia do Dia a Dia:
 Imagine sua geladeira:
-- **Model** = A comida dentro da geladeira
-- **View** = A porta da geladeira (o que você vê)
-- **ViewModel** = O sistema que atualiza automaticamente a porta quando você adiciona/remove comida
+- Model = A comida dentro da geladeira
+- View = A porta da geladeira (o que você vê)
+- ViewModel = O sistema que atualiza automaticamente a porta quando você adiciona/remove comida
 
 ---
 
-## 🔄 **Antes vs Depois: A Transformação**
+## 🔄 Antes vs Depois: A Transformação
 
-### **❌ ANTES (JavaScript "Normal"):**
+### ❌ ANTES (JavaScript "Normal"):
 ```javascript
 // Você precisa controlar TUDO manualmente
 function adicionarVideo() {
@@ -98,7 +98,7 @@ function adicionarVideo() {
 }
 ```
 
-### **✅ DEPOIS (MVVM):**
+### ✅ DEPOIS (MVVM):
 ```javascript
 // O ViewModel cuida de TUDO automaticamente
 class FormViewModel {
@@ -125,14 +125,14 @@ class FormViewModel {
 }
 ```
 
-**A mágica**: O HTML se atualiza **automaticamente** quando o ViewModel muda!
+A mágica: O HTML se atualiza automaticamente quando o ViewModel muda!
 
 ---
 
-## 🧩 **Como Funciona a Mágica: Data Binding**
+## 🧩 Como Funciona a Mágica: Data Binding
 
-### **O que é Data Binding?**
-É como se o HTML e JavaScript fossem **amigos íntimos** que se falam o tempo todo:
+### O que é Data Binding?
+É como se o HTML e JavaScript fossem amigos íntimos que se falam o tempo todo:
 
 ```javascript
 // Quando você muda isso no ViewModel:
@@ -142,7 +142,7 @@ this.titulo = 'Novo Título';
 // <h1>{{titulo}}</h1> vira <h1>Novo Título</h1>
 ```
 
-### **Como o HTML "Sabe" Quando Atualizar?**
+### Como o HTML "Sabe" Quando Atualizar?
 
 ```javascript
 // 1. O ViewModel "avisa" quando algo muda
@@ -162,9 +162,9 @@ this.notify(); // HTML atualiza sozinho! ✨
 
 ---
 
-## 🛠️ **Passo a Passo: Do HTML Simples ao MVVM**
+## 🛠️ Passo a Passo: Do HTML Simples ao MVVM
 
-### **Passo 1: HTML Limpo (sem JavaScript inline)**
+### Passo 1: HTML Limpo (sem JavaScript inline)
 ```html
 <!DOCTYPE html>
 <html>
@@ -184,7 +184,7 @@ this.notify(); // HTML atualiza sozinho! ✨
 </html>
 ```
 
-### **Passo 2: View (Responsável apenas por mostrar)**
+### Passo 2: View (Responsável apenas por mostrar)
 ```javascript
 class VideoView {
     constructor() {
@@ -210,7 +210,7 @@ class VideoView {
 }
 ```
 
-### **Passo 3: ViewModel (O cérebro da operação)**
+### Passo 3: ViewModel (O cérebro da operação)
 ```javascript
 class VideoListViewModel {
     constructor() {
@@ -258,7 +258,7 @@ class VideoListViewModel {
 }
 ```
 
-### **Passo 4: Conectar Tudo (A Mágica Acontece Aqui)**
+### Passo 4: Conectar Tudo (A Mágica Acontece Aqui)
 ```javascript
 class App {
     constructor() {
@@ -304,11 +304,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ---
 
-## 🎯 **Exemplo Prático: Lista de Tarefas**
+## 🎯 Exemplo Prático: Lista de Tarefas
 
 Vamos criar uma lista de tarefas completa para você ver MVVM em ação:
 
-### **HTML:**
+### HTML:
 ```html
 <!DOCTYPE html>
 <html>
@@ -388,7 +388,7 @@ Vamos criar uma lista de tarefas completa para você ver MVVM em ação:
 </html>
 ```
 
-### **JavaScript (MVVM):**
+### JavaScript (MVVM):
 ```javascript
 // Model - Dados das tarefas
 class TarefaRepository {
@@ -562,11 +562,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ---
 
-## 🆚 **Por que MVVM é Melhor que JavaScript "Normal"?**
+## 🆚 Por que MVVM é Melhor que JavaScript "Normal"?
 
-### **Comparação Lado a Lado:**
+### Comparação Lado a Lado:
 
-| **JavaScript "Normal"** | **MVVM** |
+| JavaScript "Normal" | MVVM |
 |------------------------|----------|
 | `document.getElementById('lista').innerHTML = '';` | `this.view.render(state.videos);` |
 | `if (erro) { document.getElementById('erro').innerHTML = erro; }` | `this.erro = erro; this.notify();` |
@@ -575,19 +575,19 @@ document.addEventListener('DOMContentLoaded', () => {
 | Difícil de testar | Fácil de testar |
 | Difícil de manter | Fácil de manter |
 
-### **Vantagens Práticas:**
+### Vantagens Práticas:
 
-1. **🔄 Atualização Automática**: HTML se atualiza sozinho
-2. **🧪 Fácil de Testar**: Cada parte pode ser testada separadamente
-3. **🔧 Fácil de Manter**: Mudanças em um lugar não quebram outros
-4. **📱 Responsivo**: Funciona bem em qualquer dispositivo
-5. **👥 Trabalho em Equipe**: Cada pessoa pode trabalhar em uma parte
+1. 🔄 Atualização Automática: HTML se atualiza sozinho
+2. 🧪 Fácil de Testar: Cada parte pode ser testada separadamente
+3. 🔧 Fácil de Manter: Mudanças em um lugar não quebram outros
+4. 📱 Responsivo: Funciona bem em qualquer dispositivo
+5. 👥 Trabalho em Equipe: Cada pessoa pode trabalhar em uma parte
 
 ---
 
-## ❓ **Perguntas que Todo Iniciante Faz**
+## ❓ Perguntas que Todo Iniciante Faz
 
-### **"Mas por que não posso só usar JavaScript normal?"**
+### "Mas por que não posso só usar JavaScript normal?"
 Você pode! Mas quando seu projeto cresce, você vai querer:
 - Adicionar validação
 - Mostrar loading
@@ -597,7 +597,7 @@ Você pode! Mas quando seu projeto cresce, você vai querer:
 
 Com JavaScript "normal", isso vira um pesadelo. Com MVVM, é simples!
 
-### **"Como o HTML 'sabe' quando atualizar?"**
+### "Como o HTML 'sabe' quando atualizar?"
 O ViewModel "avisa" através do sistema de observers:
 ```javascript
 // ViewModel avisa
@@ -609,22 +609,22 @@ this.viewModel.subscribe((state) => {
 });
 ```
 
-### **"Preciso decorar tudo isso?"**
+### "Preciso decorar tudo isso?"
 Não! Comece simples:
-1. **View**: Só renderiza
-2. **ViewModel**: Gerencia estado
-3. **Model**: Cuida dos dados
+1. View: Só renderiza
+2. ViewModel: Gerencia estado
+3. Model: Cuida dos dados
 
 Com o tempo, você vai decorando naturalmente!
 
-### **"É muito complexo para projetos pequenos?"**
+### "É muito complexo para projetos pequenos?"
 Para projetos muito pequenos (1-2 páginas), pode ser exagero. Mas se você planeja crescer, comece com MVVM desde o início!
 
 ---
 
-## ⚠️ **Armadilhas Comuns e Como Evitá-las**
+## ⚠️ Armadilhas Comuns e Como Evitá-las
 
-### **1. Misturar Lógica na View**
+### 1. Misturar Lógica na View
 ```javascript
 // ❌ ERRADO - View fazendo lógica
 class VideoView {
@@ -646,7 +646,7 @@ class VideoViewModel {
 }
 ```
 
-### **2. Esquecer de Notificar Mudanças**
+### 2. Esquecer de Notificar Mudanças
 ```javascript
 // ❌ ERRADO - HTML não atualiza
 adicionarVideo(video) {
@@ -661,7 +661,7 @@ adicionarVideo(video) {
 }
 ```
 
-### **3. Manipular DOM Diretamente no ViewModel**
+### 3. Manipular DOM Diretamente no ViewModel
 ```javascript
 // ❌ ERRADO - ViewModel manipulando DOM
 class VideoViewModel {
@@ -682,30 +682,30 @@ class VideoViewModel {
 
 ---
 
-## 🚀 **Próximos Passos**
+## 🚀 Próximos Passos
 
 Agora que você entende MVVM, que tal:
 
-1. **📚 Aprender mais padrões**: Repository, Observer, Factory
-2. **🛠️ Usar frameworks**: Vue.js, Angular, React (todos usam MVVM)
-3. **🧪 Adicionar testes**: MVVM facilita muito os testes
-4. **📱 Criar apps mobile**: Ionic, React Native usam MVVM
+1. 📚 Aprender mais padrões: Repository, Observer, Factory
+2. 🛠️ Usar frameworks: Vue.js, Angular, React (todos usam MVVM)
+3. 🧪 Adicionar testes: MVVM facilita muito os testes
+4. 📱 Criar apps mobile: Ionic, React Native usam MVVM
 
 ---
 
-## 🎯 **Resumo: Por que MVVM é Revolucionário**
+## 🎯 Resumo: Por que MVVM é Revolucionário
 
-MVVM não é só uma forma de organizar código. É uma **nova mentalidade**:
+MVVM não é só uma forma de organizar código. É uma nova mentalidade:
 
-- **Antes**: "Como faço o HTML funcionar?"
-- **Depois**: "Como organizo minha aplicação?"
+- Antes: "Como faço o HTML funcionar?"
+- Depois: "Como organizo minha aplicação?"
 
-### **Os 3 Pilares do MVVM:**
-1. **Separação de Responsabilidades**: Cada coisa no seu lugar
-2. **Data Binding**: HTML e JavaScript conversam automaticamente
-3. **Estado Centralizado**: Uma única fonte da verdade
+### Os 3 Pilares do MVVM:
+1. Separação de Responsabilidades: Cada coisa no seu lugar
+2. Data Binding: HTML e JavaScript conversam automaticamente
+3. Estado Centralizado: Uma única fonte da verdade
 
-### **Resultado Final:**
+### Resultado Final:
 - ✅ Código limpo e organizado
 - ✅ Fácil de manter e testar
 - ✅ Escalável para projetos grandes
@@ -713,11 +713,11 @@ MVVM não é só uma forma de organizar código. É uma **nova mentalidade**:
 
 ---
 
-## 💡 **Conclusão**
+## 💡 Conclusão
 
 MVVM pode parecer complexo no início, mas é como aprender a dirigir: no começo você pensa em cada movimento, depois vira automático!
 
-**A melhor forma de aprender é praticando.** Comece com um projeto pequeno e vá evoluindo. Em pouco tempo, você não vai conseguir mais programar sem MVVM!
+A melhor forma de aprender é praticando. Comece com um projeto pequeno e vá evoluindo. Em pouco tempo, você não vai conseguir mais programar sem MVVM!
 
 ---
 
