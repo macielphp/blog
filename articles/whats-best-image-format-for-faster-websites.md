@@ -4,7 +4,7 @@ description: "Discover the best image formats for faster websites in 2024-2025. 
 tags: ["web performance", "image optimization"]
 date: "2025-09-18"
 author: "Maciel Alves"
-image: ""
+image: "https://github.com/macielphp/blog/blob/main/assets/camera-capture-snap-shot-graphic.webp?raw=true"
 readTime: "4 min"
 ---
 
