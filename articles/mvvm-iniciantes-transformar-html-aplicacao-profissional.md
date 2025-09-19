@@ -2,7 +2,7 @@
 title: "MVVM para Iniciantes: Como Transformar seu HTML Simples em uma Aplicação Profissional"
 description: "Entenda como organizar seu código JavaScript de forma que ele 'converse' automaticamente com seu HTML, sem precisar manipular o DOM manualmente"
 tags: ["mvvm", "javascript", "html", "arquitetura", "tutorial", "iniciantes"]
-date: "2024-02-05"
+date: "2025-09-12"
 author: "Maciel Alves"
 image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 readTime: "12 min"
