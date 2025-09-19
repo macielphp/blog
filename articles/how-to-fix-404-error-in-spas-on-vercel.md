@@ -2,10 +2,10 @@
 title: "How to Fix 404 Error in SPAs on Vercel: Client-Side Routing"
 description: "Practical guide to fix NOT_FOUND error when accessing direct URLs in Single Page Applications deployed on Vercel"
 tags: ["vercel", "spa", "react-router", "deployment", "routing"]
-date: "2024-01-15"
+date: "2025-09-18"
 author: "Maciel Alves"
 readTime: "4 min"
-image: ""
+image: "https://raw.githubusercontent.com/macielphp/blog/refs/heads/main/assets/Macbook%20Mockup%20Front%20View%20UV.png"
 ---
 
 # How to Fix 404 Error in SPAs on Vercel: Client-Side Routing
