@@ -5,7 +5,7 @@ tags: ["vercel", "spa", "react-router", "deployment", "routing"]
 date: "2025-09-18"
 author: "Maciel Alves"
 readTime: "4 min"
-image: "https://raw.githubusercontent.com/macielphp/blog/refs/heads/main/assets/Macbook%20Mockup%20Front%20View%20UV.png"
+image: "https://raw.githubusercontent.com/macielphp/blog/refs/heads/main/assets/Macbook%20Mockup%20Front%20View%20UV.webp"
 ---
 
 # How to Fix 404 Error in SPAs on Vercel: Client-Side Routing
