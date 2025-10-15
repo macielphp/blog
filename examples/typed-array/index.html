@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypedArray - Practical Exercises</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .exercises {
+            background: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .exercise {
+            border-bottom: 2px solid #f0f0f0;
+            padding: 30px;
+        }
+        
+        .exercise:last-child {
+            border-bottom: none;
+        }
+        
+        .exercise h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .level {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin: 15px 0;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .secondary {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+        }
+        
+        .danger {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+        }
+        
+        .output {
+            background: #1a202c;
+            color: #68d391;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 15px 0;
+            border: 2px solid #4a5568;
+        }
+        
+        .canvas-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        canvas {
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stats {
+            background: #e6fffa;
+            border: 2px solid #38b2ac;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .stats h4 {
+            color: #2c7a7b;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            border-left: 5px solid #667eea;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 5px;
+            padding: 2px 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 TypedArray - Practical Exercises</h1>
+            <p>Learn through practice with 5 progressive projects</p>
+        </div>
+        
+        <div class="exercises">
+            <!-- Exercício 1: Básico -->
+            <div class="exercise">
+                <h2>
+                    <span>1.</span>
+                    <span>Fundamentals and Comparisons</span>
+                    <span class="level">BASIC</span>
+                </h2>
+                
+                <div class="description">
+                    <strong>Objective:</strong> Understand the differences between TypedArray types and overflow behaviors.
+                    <br><br>
+                    <strong>Concepts:</strong> Creation, data types, overflow, basic properties.
+                </div>
+                
+                <div class="controls">
+                    <button onclick="exercise1_create()">Create TypedArrays</button>
+                    <button onclick="exercise1_overflow()">Test Overflow</button>
+                    <button onclick="exercise1_properties()">Show Properties</button>
+                    <button class="danger" onclick="clearOutput('ex1-output')">Clear</button>
+                </div>
+                
+                <div id="ex1-output" class="output"></div>
+                
+                <div class="code-example">
+// Basic usage example
+const int8 = new Int8Array([100, 200, -50]);
+const uint8 = new Uint8Array([100, 200, 300]); // 300 -> 44 (overflow)
+const float32 = new Float32Array([3.14159, 2.71828]);
+
+console.log('Int8Array:', Array.from(int8));
+console.log('Uint8Array:', Array.from(uint8));
+console.log('Float32Array:', Array.from(float32));
+                </div>
+            </div>
+            
+            <!-- Exercício 2: Buffers -->
+            <div class="exercise">
+                <h2>
+                    <span>2.</span>
+                    <span>ArrayBuffer and Multiple Views</span>
+                    <span class="level">INTERMEDIATE</span>
+                </h2>
+                
+                <div class="description">
+                    <strong>Objective:</strong> Work with ArrayBuffer and different views on the same memory buffer.
+                    <br><br>
+                    <strong>Concepts:</strong> ArrayBuffer, multiple views, endianness, memory layout.
+                </div>
+                
+                <div class="controls">
+                    <button onclick="exercise2_buffer()">Create Buffer + Views</button>
+                    <button onclick="exercise2_modify()">Modify Data</button>
+                    <button onclick="exercise2_endian()">Test Endianness</button>
+                    <button class="danger" onclick="clearOutput('ex2-output')">Clear</button>
+                </div>
+                
+                <div id="ex2-output" class="output"></div>
+                
+                <div class="code-example">
+// Multiple views on the same buffer
+const buffer = new ArrayBuffer(16);
+const uint8View = new Uint8Array(buffer);
+const uint32View = new Uint32Array(buffer);
+
+uint32View[0] = 0x12345678;
+console.log('As bytes:', Array.from(uint8View.slice(0, 4)));
+                </div>
+            </div>
+            
+            <!-- Exercício 3: Performance -->
+            <div class="exercise">
+                <h2>
+                    <span>3.</span>
+                    <span>Performance Benchmark</span>
+                    <span class="level">INTERMEDIATE</span>
+                </h2>
+                
+                <div class="description">
+                    <strong>Objective:</strong> Compare performance between regular arrays and TypedArrays in different scenarios.
+                    <br><br>
+                    <strong>Concepts:</strong> Performance, benchmarking, mathematical operations, memory efficiency.
+                </div>
+                
+                <div class="controls">
+                    <button onclick="exercise3_creation()">Creation Benchmark</button>
+                    <button onclick="exercise3_operations()">Operations Benchmark</button>
+                    <button onclick="exercise3_memory()">Memory Usage</button>
+                    <button class="danger" onclick="clearOutput('ex3-output')">Clear</button>
+                </div>
+                
+                <div id="ex3-output" class="output"></div>
+                
+                <div class="stats">
+                    <h4>📊 Benchmark Results</h4>
+                    <div>Array Creation:</div>
+                    <div class="progress-bar">
+                        <div id="creation-progress" class="progress-fill" style="width: 0%">0%</div>
+                    </div>
+                    <div>Mathematical Operations:</div>
+                    <div class="progress-bar">
+                        <div id="math-progress" class="progress-fill" style="width: 0%">0%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Exercício 4: Canvas/Imagem -->
+            <div class="exercise">
+                <h2>
+                    <span>4.</span>
+                    <span>Image Processing</span>
+                    <span class="level">ADVANCED</span>
+                </h2>
+                
+                <div class="description">
+                    <strong>Objective:</strong> Use Uint8ClampedArray to manipulate image pixels in real-time.
+                    <br><br>
+                    <strong>Concepts:</strong> Canvas API, ImageData, pixel manipulation, image filters.
+                </div>
+                
+                <div class="controls">
+                    <button onclick="exercise4_gradient()">Create Gradient</button>
+                    <button onclick="exercise4_noise()">Add Noise</button>
+                    <button onclick="exercise4_blur()">Apply Blur</button>
+                    <button onclick="exercise4_edge()">Edge Detection</button>
+                    <button class="secondary" onclick="exercise4_reset()">Reset</button>
+                </div>
+                
+                <div class="canvas-container">
+                    <canvas id="ex4-canvas" width="300" height="200"></canvas>
+                </div>
+                
+                <div id="ex4-output" class="output"></div>
+                
+                <div class="code-example">
+// Pixel manipulation with Uint8ClampedArray
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const imageData = ctx.getImageData(0, 0, width, height);
+const pixels = imageData.data; // Uint8ClampedArray
+
+// Each pixel = [R, G, B, A] (4 bytes)
+for (let i = 0; i < pixels.length; i += 4) {
+    pixels[i] = 255;     // Red
+    pixels[i + 1] = 0;   // Green  
+    pixels[i + 2] = 0;   // Blue
+    pixels[i + 3] = 255; // Alpha
+}
+                </div>
+            </div>
+            
+            <!-- Exercício 5: Projeto Completo -->
+            <div class="exercise">
+                <h2>
+                    <span>5.</span>
+                    <span>Audio Spectrum Visualizer</span>
+                    <span class="level">EXPERT</span>
+                </h2>
+                
+                <div class="description">
+                    <strong>Objective:</strong> Create an audio spectrum analyzer using Float32Array for audio data processing.
+                    <br><br>
+                    <strong>Concepts:</strong> Web Audio API, FFT, frequency analysis, real-time visualization.
+                </div>
+                
+                <div class="controls">
+                    <button onclick="exercise5_start()">Start Audio</button>
+                    <button onclick="exercise5_sine()">Generate Sine Wave</button>
+                    <button onclick="exercise5_noise()">Generate Noise</button>
+                    <button onclick="exercise5_stop()">Stop</button>
+                </div>
+                
+                <div class="canvas-container">
+                    <canvas id="ex5-waveform" width="400" height="150"></canvas>
+                    <canvas id="ex5-spectrum" width="400" height="150"></canvas>
+                </div>
+                
+                <div id="ex5-output" class="output"></div>
+                
+                <div class="stats">
+                    <h4>🎵 Audio Statistics</h4>
+                    <div>Sample Rate: <span id="sample-rate">--</span> Hz</div>
+                    <div>Buffer Size: <span id="buffer-size">--</span> samples</div>
+                    <div>Dominant Frequency: <span id="dominant-freq">--</span> Hz</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Utility functions
+        function log(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent += message + '\n';
+        }
+        
+        function clearOutput(elementId) {
+            document.getElementById(elementId).textContent = '';
+        }
+        
+        // Exercise 1: Fundamentals
+        function exercise1_create() {
+            clearOutput('ex1-output');
+            log('ex1-output', '=== CREATING TYPEDARRAYS ===\n');
+            
+            // Different ways to create
+            const int8 = new Int8Array([100, -50, 127]);
+            const uint8 = new Uint8Array(5);
+            const float32 = new Float32Array([3.14159, 2.71828, Math.sqrt(2)]);
+            
+            // Filling uint8
+            for (let i = 0; i < uint8.length; i++) {
+                uint8[i] = i * 50;
+            }
+            
+            log('ex1-output', `Int8Array:   [${Array.from(int8).join(', ')}]`);
+            log('ex1-output', `Uint8Array:  [${Array.from(uint8).join(', ')}]`);
+            log('ex1-output', `Float32Array: [${Array.from(float32).map(n => n.toFixed(3)).join(', ')}]`);
+            
+            // Creating from ArrayBuffer
+            const buffer = new ArrayBuffer(12);
+            const int32FromBuffer = new Int32Array(buffer);
+            int32FromBuffer.set([100, 200, 300]);
+            
+            log('ex1-output', `\nCreated from buffer: [${Array.from(int32FromBuffer).join(', ')}]`);
+            log('ex1-output', `Buffer size: ${buffer.byteLength} bytes`);
+        }
+        
+        function exercise1_overflow() {
+            clearOutput('ex1-output');
+            log('ex1-output', '=== TESTING OVERFLOW ===\n');
+            
+            // Test with different types
+            const tests = [
+                { type: 'Int8Array', arr: new Int8Array([127]), add: 1, range: '-128 to 127' },
+                { type: 'Uint8Array', arr: new Uint8Array([255]), add: 1, range: '0 to 255' },
+                { type: 'Uint8ClampedArray', arr: new Uint8ClampedArray([255]), add: 50, range: '0 to 255 (clamped)' },
+                { type: 'Int16Array', arr: new Int16Array([32767]), add: 1, range: '-32768 to 32767' }
+            ];
+            
+            tests.forEach(test => {
+                const originalValue = test.arr[0];
+                test.arr[0] += test.add;
+                const finalValue = test.arr[0];
+                
+                log('ex1-output', `${test.type}:`);
+                log('ex1-output', `  Range: ${test.range}`);
+                log('ex1-output', `  ${originalValue} + ${test.add} = ${finalValue}`);
+                log('ex1-output', '');
+            });
+        }
+        
+        function exercise1_properties() {
+            clearOutput('ex1-output');
+            log('ex1-output', '=== TYPEDARRAY PROPERTIES ===\n');
+            
+            const float64 = new Float64Array(10);
+            
+            log('ex1-output', `Type: ${float64.constructor.name}`);
+            log('ex1-output', `Length: ${float64.length} elements`);
+            log('ex1-output', `ByteLength: ${float64.byteLength} bytes`);
+            log('ex1-output', `BYTES_PER_ELEMENT: ${float64.BYTES_PER_ELEMENT} bytes`);
+            log('ex1-output', `ByteOffset: ${float64.byteOffset}`);
+            
+            // Underlying buffer
+            log('ex1-output', `\nUnderlying ArrayBuffer:`);
+            log('ex1-output', `  Size: ${float64.buffer.byteLength} bytes`);
+            log('ex1-output', `  Shared: ${float64.buffer === float64.buffer}`);
+            
+            // Available methods
+            const methods = ['set', 'subarray', 'slice', 'map', 'filter', 'reduce', 'forEach'];
+            log('ex1-output', `\nAvailable methods: ${methods.join(', ')}`);
+            log('ex1-output', `NOT available methods: push, pop, shift, unshift, splice`);
+        }
+        
+        // Exercise 2: ArrayBuffer
+        function exercise2_buffer() {
+            clearOutput('ex2-output');
+            log('ex2-output', '=== ARRAYBUFFER AND MULTIPLE VIEWS ===\n');
+            
+            // Create 16-byte buffer
+            const buffer = new ArrayBuffer(16);
+            const uint8View = new Uint8Array(buffer);
+            const uint16View = new Uint16Array(buffer);
+            const uint32View = new Uint32Array(buffer);
+            
+            log('ex2-output', `Buffer size: ${buffer.byteLength} bytes`);
+            log('ex2-output', `Uint8Array length: ${uint8View.length} elements`);
+            log('ex2-output', `Uint16Array length: ${uint16View.length} elements`);
+            log('ex2-output', `Uint32Array length: ${uint32View.length} elements`);
+            
+            // Set data in one view
+            uint32View[0] = 0x12345678;
+            uint32View[1] = 0x9ABCDEF0;
+            
+            log('ex2-output', '\nData in Uint32Array:');
+            log('ex2-output', `  [0]: 0x${uint32View[0].toString(16).toUpperCase()}`);
+            log('ex2-output', `  [1]: 0x${uint32View[1].toString(16).toUpperCase()}`);
+            
+            log('ex2-output', '\nSame data as bytes (Uint8Array):');
+            log('ex2-output', `  [${Array.from(uint8View).map(b => '0x' + b.toString(16).toUpperCase().padStart(2, '0')).join(', ')}]`);
+            
+            log('ex2-output', '\nSame data as 16-bit words (Uint16Array):');
+            log('ex2-output', `  [${Array.from(uint16View).map(w => '0x' + w.toString(16).toUpperCase().padStart(4, '0')).join(', ')}]`);
+        }
+        
+        function exercise2_modify() {
+            clearOutput('ex2-output');
+            log('ex2-output', '=== MODIFYING DATA THROUGH DIFFERENT VIEWS ===\n');
+            
+            const buffer = new ArrayBuffer(8);
+            const uint8View = new Uint8Array(buffer);
+            const uint32View = new Uint32Array(buffer);
+            
+            // Initialize with zeros
+            uint8View.fill(0);
+            log('ex2-output', 'Initial state (all zeros):');
+            log('ex2-output', `  Bytes: [${Array.from(uint8View).join(', ')}]`);
+            
+            // Modify through Uint32Array
+            uint32View[0] = 0xDEADBEEF;
+            log('ex2-output', '\nAfter setting uint32View[0] = 0xDEADBEEF:');
+            log('ex2-output', `  Bytes: [${Array.from(uint8View).map(b => '0x' + b.toString(16).toUpperCase().padStart(2, '0')).join(', ')}]`);
+            
+            // Modify through Uint8Array
+            uint8View[4] = 0xFF;
+            uint8View[5] = 0x00;
+            uint8View[6] = 0xFF;
+            uint8View[7] = 0x00;
+            
+            log('ex2-output', '\nAfter modifying bytes 4-7:');
+            log('ex2-output', `  Bytes: [${Array.from(uint8View).map(b => '0x' + b.toString(16).toUpperCase().padStart(2, '0')).join(', ')}]`);
+            log('ex2-output', `  Uint32Array[1]: 0x${uint32View[1].toString(16).toUpperCase()}`);
+        }
+        
+        function exercise2_endian() {
+            clearOutput('ex2-output');
+            log('ex2-output', '=== TESTING ENDIANNESS ===\n');
+            
+            const buffer = new ArrayBuffer(4);
+            const uint8View = new Uint8Array(buffer);
+            const uint32View = new Uint32Array(buffer);
+            
+            // Set a known value
+            uint32View[0] = 0x12345678;
+            
+            log('ex2-output', 'Value: 0x12345678');
+            log('ex2-output', `As bytes: [${Array.from(uint8View).map(b => '0x' + b.toString(16).toUpperCase().padStart(2, '0')).join(', ')}]`);
+            
+            // Check endianness
+            if (uint8View[0] === 0x78) {
+                log('ex2-output', '\nSystem is LITTLE ENDIAN (LSB first)');
+                log('ex2-output', 'Byte order: 0x78, 0x56, 0x34, 0x12');
+            } else if (uint8View[0] === 0x12) {
+                log('ex2-output', '\nSystem is BIG ENDIAN (MSB first)');
+                log('ex2-output', 'Byte order: 0x12, 0x34, 0x56, 0x78');
+            }
+            
+            // Demonstrate DataView for explicit endianness control
+            const dataView = new DataView(buffer);
+            log('ex2-output', '\nUsing DataView for explicit control:');
+            log('ex2-output', `  getUint32(0, true): 0x${dataView.getUint32(0, true).toString(16).toUpperCase()} (little endian)`);
+            log('ex2-output', `  getUint32(0, false): 0x${dataView.getUint32(0, false).toString(16).toUpperCase()} (big endian)`);
+        }
+        
+        // Exercise 3: Performance
+        function exercise3_creation() {
+            clearOutput('ex3-output');
+            log('ex3-output', '=== CREATION PERFORMANCE BENCHMARK ===\n');
+            
+            const iterations = 100000;
+            const size = 1000;
+            
+            // Benchmark regular array creation
+            const startRegular = performance.now();
+            for (let i = 0; i < iterations; i++) {
+                const arr = new Array(size);
+                for (let j = 0; j < size; j++) {
+                    arr[j] = Math.random();
+                }
+            }
+            const endRegular = performance.now();
+            const regularTime = endRegular - startRegular;
+            
+            // Benchmark TypedArray creation
+            const startTyped = performance.now();
+            for (let i = 0; i < iterations; i++) {
+                const arr = new Float32Array(size);
+                for (let j = 0; j < size; j++) {
+                    arr[j] = Math.random();
+                }
+            }
+            const endTyped = performance.now();
+            const typedTime = endTyped - startTyped;
+            
+            log('ex3-output', `Iterations: ${iterations.toLocaleString()}`);
+            log('ex3-output', `Array size: ${size}`);
+            log('ex3-output', `\nRegular Array: ${regularTime.toFixed(2)}ms`);
+            log('ex3-output', `TypedArray: ${typedTime.toFixed(2)}ms`);
+            log('ex3-output', `\nTypedArray is ${(regularTime / typedTime).toFixed(2)}x faster`);
+            
+            // Update progress bar
+            const progress = Math.min(100, (typedTime / regularTime) * 100);
+            document.getElementById('creation-progress').style.width = `${100 - progress}%`;
+            document.getElementById('creation-progress').textContent = `${(100 - progress).toFixed(0)}%`;
+        }
+        
+        function exercise3_operations() {
+            clearOutput('ex3-output');
+            log('ex3-output', '=== MATHEMATICAL OPERATIONS BENCHMARK ===\n');
+            
+            const size = 1000000;
+            const iterations = 100;
+            
+            // Create arrays
+            const regularArray = new Array(size);
+            const typedArray = new Float32Array(size);
+            
+            // Fill with random data
+            for (let i = 0; i < size; i++) {
+                const value = Math.random() * 100;
+                regularArray[i] = value;
+                typedArray[i] = value;
+            }
+            
+            // Benchmark regular array operations
+            const startRegular = performance.now();
+            for (let iter = 0; iter < iterations; iter++) {
+                let sum = 0;
+                for (let i = 0; i < size; i++) {
+                    sum += regularArray[i] * 2 + 1;
+                }
+            }
+            const endRegular = performance.now();
+            const regularTime = endRegular - startRegular;
+            
+            // Benchmark TypedArray operations
+            const startTyped = performance.now();
+            for (let iter = 0; iter < iterations; iter++) {
+                let sum = 0;
+                for (let i = 0; i < size; i++) {
+                    sum += typedArray[i] * 2 + 1;
+                }
+            }
+            const endTyped = performance.now();
+            const typedTime = endTyped - startTyped;
+            
+            log('ex3-output', `Array size: ${size.toLocaleString()}`);
+            log('ex3-output', `Operations per iteration: ${size.toLocaleString()}`);
+            log('ex3-output', `Total iterations: ${iterations}`);
+            log('ex3-output', `\nRegular Array: ${regularTime.toFixed(2)}ms`);
+            log('ex3-output', `TypedArray: ${typedTime.toFixed(2)}ms`);
+            log('ex3-output', `\nTypedArray is ${(regularTime / typedTime).toFixed(2)}x faster`);
+            
+            // Update progress bar
+            const progress = Math.min(100, (typedTime / regularTime) * 100);
+            document.getElementById('math-progress').style.width = `${100 - progress}%`;
+            document.getElementById('math-progress').textContent = `${(100 - progress).toFixed(0)}%`;
+        }
+        
+        function exercise3_memory() {
+            clearOutput('ex3-output');
+            log('ex3-output', '=== MEMORY USAGE COMPARISON ===\n');
+            
+            const size = 1000000;
+            
+            // Create arrays
+            const regularArray = new Array(size);
+            const int32Array = new Int32Array(size);
+            const float32Array = new Float32Array(size);
+            const float64Array = new Float64Array(size);
+            
+            // Fill with data
+            for (let i = 0; i < size; i++) {
+                regularArray[i] = i;
+                int32Array[i] = i;
+                float32Array[i] = i;
+                float64Array[i] = i;
+            }
+            
+            log('ex3-output', `Array size: ${size.toLocaleString()} elements`);
+            log('ex3-output', '\nMemory usage:');
+            log('ex3-output', `  Regular Array: ~${(size * 8).toLocaleString()} bytes (estimated)`);
+            log('ex3-output', `  Int32Array: ${int32Array.byteLength.toLocaleString()} bytes`);
+            log('ex3-output', `  Float32Array: ${float32Array.byteLength.toLocaleString()} bytes`);
+            log('ex3-output', `  Float64Array: ${float64Array.byteLength.toLocaleString()} bytes`);
+            
+            log('ex3-output', '\nMemory efficiency (vs Regular Array):');
+            log('ex3-output', `  Int32Array: ${((size * 8) / int32Array.byteLength).toFixed(1)}x more efficient`);
+            log('ex3-output', `  Float32Array: ${((size * 8) / float32Array.byteLength).toFixed(1)}x more efficient`);
+            log('ex3-output', `  Float64Array: ${((size * 8) / float64Array.byteLength).toFixed(1)}x more efficient`);
+        }
+        
+        // Exercise 4: Image Processing
+        let canvas4, ctx4, imageData4;
+        
+        function initCanvas4() {
+            canvas4 = document.getElementById('ex4-canvas');
+            ctx4 = canvas4.getContext('2d');
+            imageData4 = ctx4.createImageData(canvas4.width, canvas4.height);
+        }
+        
+        function exercise4_gradient() {
+            if (!canvas4) initCanvas4();
+            
+            clearOutput('ex4-output');
+            log('ex4-output', '=== CREATING GRADIENT ===\n');
+            
+            const pixels = imageData4.data; // Uint8ClampedArray
+            
+            for (let y = 0; y < canvas4.height; y++) {
+                for (let x = 0; x < canvas4.width; x++) {
+                    const index = (y * canvas4.width + x) * 4;
+                    
+                    // Create a colorful gradient
+                    pixels[index] = Math.floor((x / canvas4.width) * 255);     // Red
+                    pixels[index + 1] = Math.floor((y / canvas4.height) * 255); // Green
+                    pixels[index + 2] = Math.floor(((x + y) / (canvas4.width + canvas4.height)) * 255); // Blue
+                    pixels[index + 3] = 255; // Alpha
+                }
+            }
+            
+            ctx4.putImageData(imageData4, 0, 0);
+            log('ex4-output', `Gradient created: ${canvas4.width}x${canvas4.height} pixels`);
+            log('ex4-output', `Total pixels processed: ${(canvas4.width * canvas4.height).toLocaleString()}`);
+        }
+        
+        function exercise4_noise() {
+            if (!canvas4) initCanvas4();
+            
+            clearOutput('ex4-output');
+            log('ex4-output', '=== ADDING NOISE ===\n');
+            
+            const pixels = imageData4.data;
+            
+            for (let i = 0; i < pixels.length; i += 4) {
+                const noise = (Math.random() - 0.5) * 100;
+                
+                pixels[i] = Math.max(0, Math.min(255, pixels[i] + noise));     // Red
+                pixels[i + 1] = Math.max(0, Math.min(255, pixels[i + 1] + noise)); // Green
+                pixels[i + 2] = Math.max(0, Math.min(255, pixels[i + 2] + noise)); // Blue
+                // Alpha stays the same
+            }
+            
+            ctx4.putImageData(imageData4, 0, 0);
+            log('ex4-output', 'Noise added to all pixels');
+            log('ex4-output', 'Noise range: -50 to +50');
+        }
+        
+        function exercise4_blur() {
+            if (!canvas4) initCanvas4();
+            
+            clearOutput('ex4-output');
+            log('ex4-output', '=== APPLYING BLUR FILTER ===\n');
+            
+            const pixels = imageData4.data;
+            const blurred = new Uint8ClampedArray(pixels.length);
+            
+            // Simple box blur
+            const blurRadius = 2;
+            
+            for (let y = 0; y < canvas4.height; y++) {
+                for (let x = 0; x < canvas4.width; x++) {
+                    let r = 0, g = 0, b = 0, count = 0;
+                    
+                    // Sample surrounding pixels
+                    for (let dy = -blurRadius; dy <= blurRadius; dy++) {
+                        for (let dx = -blurRadius; dx <= blurRadius; dx++) {
+                            const nx = x + dx;
+                            const ny = y + dy;
+                            
+                            if (nx >= 0 && nx < canvas4.width && ny >= 0 && ny < canvas4.height) {
+                                const index = (ny * canvas4.width + nx) * 4;
+                                r += pixels[index];
+                                g += pixels[index + 1];
+                                b += pixels[index + 2];
+                                count++;
+                            }
+                        }
+                    }
+                    
+                    const index = (y * canvas4.width + x) * 4;
+                    blurred[index] = r / count;
+                    blurred[index + 1] = g / count;
+                    blurred[index + 2] = b / count;
+                    blurred[index + 3] = pixels[index + 3];
+                }
+            }
+            
+            // Copy blurred data back
+            for (let i = 0; i < pixels.length; i++) {
+                pixels[i] = blurred[i];
+            }
+            
+            ctx4.putImageData(imageData4, 0, 0);
+            log('ex4-output', `Blur applied with radius: ${blurRadius}`);
+            log('ex4-output', `Samples per pixel: ${(blurRadius * 2 + 1) ** 2}`);
+        }
+        
+        function exercise4_edge() {
+            if (!canvas4) initCanvas4();
+            
+            clearOutput('ex4-output');
+            log('ex4-output', '=== EDGE DETECTION ===\n');
+            
+            const pixels = imageData4.data;
+            const edges = new Uint8ClampedArray(pixels.length);
+            
+            // Sobel edge detection
+            const sobelX = [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]];
+            const sobelY = [[-1, -2, -1], [0, 0, 0], [1, 2, 1]];
+            
+            for (let y = 1; y < canvas4.height - 1; y++) {
+                for (let x = 1; x < canvas4.width - 1; x++) {
+                    let gx = 0, gy = 0;
+                    
+                    // Apply Sobel operators
+                    for (let ky = 0; ky < 3; ky++) {
+                        for (let kx = 0; kx < 3; kx++) {
+                            const px = x + kx - 1;
+                            const py = y + ky - 1;
+                            const index = (py * canvas4.width + px) * 4;
+                            
+                            // Use luminance for edge detection
+                            const luminance = (pixels[index] + pixels[index + 1] + pixels[index + 2]) / 3;
+                            
+                            gx += luminance * sobelX[ky][kx];
+                            gy += luminance * sobelY[ky][kx];
+                        }
+                    }
+                    
+                    const magnitude = Math.sqrt(gx * gx + gy * gy);
+                    const edgeValue = Math.min(255, magnitude);
+                    
+                    const index = (y * canvas4.width + x) * 4;
+                    edges[index] = edgeValue;     // Red
+                    edges[index + 1] = edgeValue; // Green
+                    edges[index + 2] = edgeValue; // Blue
+                    edges[index + 3] = 255;       // Alpha
+                }
+            }
+            
+            // Copy edge data back
+            for (let i = 0; i < pixels.length; i++) {
+                pixels[i] = edges[i];
+            }
+            
+            ctx4.putImageData(imageData4, 0, 0);
+            log('ex4-output', 'Sobel edge detection applied');
+            log('ex4-output', 'Edge magnitude calculated using gradient operators');
+        }
+        
+        function exercise4_reset() {
+            if (!canvas4) initCanvas4();
+            
+            clearOutput('ex4-output');
+            log('ex4-output', '=== RESET CANVAS ===\n');
+            
+            // Clear canvas
+            ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
+            
+            // Reset image data
+            imageData4 = ctx4.createImageData(canvas4.width, canvas4.height);
+            
+            log('ex4-output', 'Canvas reset to blank state');
+        }
+        
+        // Exercise 5: Audio Spectrum Visualizer
+        let audioContext, analyser, dataArray, animationId;
+        let isPlaying = false;
+        
+        function exercise5_start() {
+            clearOutput('ex5-output');
+            log('ex5-output', '=== STARTING AUDIO CONTEXT ===\n');
+            
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                
+                analyser.fftSize = 2048;
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+                
+                // Update statistics
+                document.getElementById('sample-rate').textContent = audioContext.sampleRate;
+                document.getElementById('buffer-size').textContent = bufferLength;
+                
+                log('ex5-output', `Audio context created`);
+                log('ex5-output', `Sample rate: ${audioContext.sampleRate} Hz`);
+                log('ex5-output', `Buffer size: ${bufferLength} samples`);
+                log('ex5-output', `FFT size: ${analyser.fftSize}`);
+                
+                // Start visualization
+                drawWaveform();
+                drawSpectrum();
+                
+            } catch (error) {
+                log('ex5-output', `Error: ${error.message}`);
+            }
+        }
+        
+        function exercise5_sine() {
+            if (!audioContext) {
+                log('ex5-output', 'Please start audio context first');
+                return;
+            }
+            
+            clearOutput('ex5-output');
+            log('ex5-output', '=== GENERATING SINE WAVE ===\n');
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A4 note
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            
+            oscillator.start();
+            isPlaying = true;
+            
+            log('ex5-output', 'Sine wave generated at 440 Hz (A4)');
+            log('ex5-output', 'Volume: 10%');
+            
+            // Stop after 3 seconds
+            setTimeout(() => {
+                oscillator.stop();
+                isPlaying = false;
+                log('ex5-output', 'Sine wave stopped');
+            }, 3000);
+        }
+        
+        function exercise5_noise() {
+            if (!audioContext) {
+                log('ex5-output', 'Please start audio context first');
+                return;
+            }
+            
+            clearOutput('ex5-output');
+            log('ex5-output', '=== GENERATING WHITE NOISE ===\n');
+            
+            const bufferSize = 4096;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Generate white noise
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = (Math.random() * 2 - 1) * 0.1; // Scale to prevent clipping
+            }
+            
+            const source = audioContext.createBufferSource();
+            const gainNode = audioContext.createGain();
+            
+            source.buffer = buffer;
+            source.loop = true;
+            
+            source.connect(gainNode);
+            gainNode.connect(analyser);
+            analyser.connect(audioContext.destination);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            
+            source.start();
+            isPlaying = true;
+            
+            log('ex5-output', 'White noise generated');
+            log('ex5-output', 'Volume: 10%');
+            log('ex5-output', 'Looping enabled');
+            
+            // Store reference to stop later
+            window.currentNoiseSource = source;
+        }
+        
+        function exercise5_stop() {
+            clearOutput('ex5-output');
+            log('ex5-output', '=== STOPPING AUDIO ===\n');
+            
+            if (window.currentNoiseSource) {
+                window.currentNoiseSource.stop();
+                window.currentNoiseSource = null;
+            }
+            
+            if (audioContext) {
+                audioContext.suspend();
+            }
+            
+            isPlaying = false;
+            
+            // Clear canvases
+            const waveformCanvas = document.getElementById('ex5-waveform');
+            const spectrumCanvas = document.getElementById('ex5-spectrum');
+            const waveformCtx = waveformCanvas.getContext('2d');
+            const spectrumCtx = spectrumCanvas.getContext('2d');
+            
+            waveformCtx.clearRect(0, 0, waveformCanvas.width, waveformCanvas.height);
+            spectrumCtx.clearRect(0, 0, spectrumCanvas.width, spectrumCanvas.height);
+            
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            log('ex5-output', 'Audio stopped and visualization cleared');
+        }
+        
+        function drawWaveform() {
+            if (!analyser || !isPlaying) return;
+            
+            const canvas = document.getElementById('ex5-waveform');
+            const ctx = canvas.getContext('2d');
+            
+            analyser.getByteTimeDomainData(dataArray);
+            
+            ctx.fillStyle = '#1a202c';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#68d391';
+            ctx.beginPath();
+            
+            const sliceWidth = canvas.width / dataArray.length;
+            let x = 0;
+            
+            for (let i = 0; i < dataArray.length; i++) {
+                const v = dataArray[i] / 128.0;
+                const y = v * canvas.height / 2;
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+                
+                x += sliceWidth;
+            }
+            
+            ctx.lineTo(canvas.width, canvas.height / 2);
+            ctx.stroke();
+            
+            animationId = requestAnimationFrame(drawWaveform);
+        }
+        
+        function drawSpectrum() {
+            if (!analyser || !isPlaying) return;
+            
+            const canvas = document.getElementById('ex5-spectrum');
+            const ctx = canvas.getContext('2d');
+            
+            analyser.getByteFrequencyData(dataArray);
+            
+            ctx.fillStyle = '#1a202c';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const barWidth = canvas.width / dataArray.length;
+            let x = 0;
+            let maxFreq = 0;
+            let maxIndex = 0;
+            
+            for (let i = 0; i < dataArray.length; i++) {
+                const barHeight = (dataArray[i] / 255) * canvas.height;
+                
+                // Find dominant frequency
+                if (dataArray[i] > maxFreq) {
+                    maxFreq = dataArray[i];
+                    maxIndex = i;
+                }
+                
+                const hue = (i / dataArray.length) * 360;
+                ctx.fillStyle = `hsl(${hue}, 70%, 50%)`;
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                
+                x += barWidth;
+            }
+            
+            // Update dominant frequency display
+            const frequency = (maxIndex * audioContext.sampleRate) / (2 * dataArray.length);
+            document.getElementById('dominant-freq').textContent = Math.round(frequency);
+            
+            animationId = requestAnimationFrame(drawSpectrum);
+        }
+    </script>
+</body>
+</html>
