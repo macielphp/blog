@@ -1,3 +1,13 @@
+---
+title: "Building a Google Analytics Debugger Component in React"
+description: "Learn how to create a debugger component in React with a few steps"
+tags: ["google analytics", "ga4", "web analytics", "javascript", "tutorial", "developers", "debugger", "react"]
+date: "2025-09-12"
+author: "Maciel Alves"
+image: "https://github.com/macielphp/blog/blob/main/assets/ga-&-react-debugger.webp?raw=true"
+readTime: "12 min"
+---
+
 # 🧪 Building a Google Analytics Debugger Component in React
 
 ## 🎯 **Introduction**

@@ -1,6 +1,6 @@
 ---
-title: "Destructuring Assignment: Dominando essa Poderosa Feature do JavaScript"
-description: "Aprenda como usar destructuring assignment no JavaScript moderno e nos principais frameworks: React, Angular e Vue com exemplos práticos"
+title: "Destructuring Assignment: Mastering this Powerful JavaScript Feature"
+description: "Learn how to use destructuring assignment in modern JavaScript and major frameworks: React, Angular, and Vue with practical examples"
 tags: ["javascript", "destructuring", "es6", "react", "angular", "vue", "tutorial"]
 date: "2025-09-13"
 author: "Maciel Alves"
@@ -8,220 +8,220 @@ image: "https://images.unsplash.com/photo-1667372393086-9d4001d51cf1?q=80&w=1332
 readTime: "10 min"
 ---
 
-# Destructuring Assignment: Dominando essa Poderosa Feature do JavaScript
+# Destructuring Assignment: Mastering this Powerful JavaScript Feature
 
-O destructuring assignment é uma das features mais elegantes e úteis do JavaScript moderno. Introduzido no ES6, ele permite extrair dados de arrays e objetos de forma concisa e legível. Neste artigo, vamos explorar como usar destructuring no JavaScript puro e como aplicá-lo nos principais frameworks: React, Angular e Vue.
+Destructuring assignment is one of the most elegant and useful features of modern JavaScript. Introduced in ES6, it allows you to extract data from arrays and objects in a concise and readable way. In this article, we'll explore how to use destructuring in vanilla JavaScript and how to apply it in major frameworks: React, Angular, and Vue.
 
-## O que é Destructuring Assignment?
+## What is Destructuring Assignment?
 
-Destructuring é uma expressão JavaScript que permite desempacotar valores de arrays ou propriedades de objetos em variáveis distintas. Em vez de acessar propriedades uma por uma, você pode extrair múltiplos valores em uma única linha.
+Destructuring is a JavaScript expression that allows you to unpack values from arrays or properties from objects into distinct variables. Instead of accessing properties one by one, you can extract multiple values in a single line.
 
 ```javascript
-// Sem destructuring
-const pessoa = { nome: 'João', idade: 30, cidade: 'São Paulo' };
-const nome = pessoa.nome;
-const idade = pessoa.idade;
-const cidade = pessoa.cidade;
+// Without destructuring
+const person = { name: 'John', age: 30, city: 'New York' };
+const name = person.name;
+const age = person.age;
+const city = person.city;
 
-// Com destructuring
-const { nome, idade, cidade } = pessoa;
+// With destructuring
+const { name, age, city } = person;
 ```
 
-## Destructuring em JavaScript Puro
+## Destructuring in Vanilla JavaScript
 
-### Destructuring de Objetos
+### Object Destructuring
 
-O destructuring de objetos permite extrair propriedades específicas:
+Object destructuring allows you to extract specific properties:
 
 ```javascript
-const usuario = {
+const user = {
   id: 1,
-  nome: 'Maria',
-  email: 'maria@email.com',
-  endereco: {
-    rua: 'Rua das Flores, 123',
-    cidade: 'Rio de Janeiro',
-    cep: '20000-000'
+  name: 'Mary',
+  email: 'mary@email.com',
+  address: {
+    street: '123 Flower Street',
+    city: 'Los Angeles',
+    zipCode: '90001'
   }
 };
 
-// Destructuring básico
-const { nome, email } = usuario;
+// Basic destructuring
+const { name, email } = user;
 
-// Renomeando variáveis
-const { nome: nomeUsuario, email: emailUsuario } = usuario;
+// Renaming variables
+const { name: userName, email: userEmail } = user;
 
-// Valores padrão
-const { telefone = 'Não informado' } = usuario;
+// Default values
+const { phone = 'Not provided' } = user;
 
-// Destructuring aninhado
-const { endereco: { cidade, cep } } = usuario;
+// Nested destructuring
+const { address: { city, zipCode } } = user;
 
 // Rest operator
-const { id, ...dadosUsuario } = usuario;
+const { id, ...userData } = user;
 ```
 
-### Destructuring de Arrays
+### Array Destructuring
 
-Para arrays, a ordem importa:
+For arrays, order matters:
 
 ```javascript
-const cores = ['vermelho', 'verde', 'azul', 'amarelo'];
+const colors = ['red', 'green', 'blue', 'yellow'];
 
-// Destructuring básico
-const [primeira, segunda] = cores;
+// Basic destructuring
+const [first, second] = colors;
 
-// Pulando elementos
-const [, , terceira] = cores;
+// Skipping elements
+const [, , third] = colors;
 
-// Com rest operator
-const [primeiraCor, ...outasCores] = cores;
+// With rest operator
+const [firstColor, ...otherColors] = colors;
 
-// Valores padrão
-const [cor1, cor2, cor3, cor4, cor5 = 'roxo'] = cores;
+// Default values
+const [color1, color2, color3, color4, color5 = 'purple'] = colors;
 
-// Troca de variáveis
+// Variable swapping
 let a = 1, b = 2;
 [a, b] = [b, a]; // a = 2, b = 1
 ```
 
-### Destructuring em Parâmetros de Função
+### Destructuring in Function Parameters
 
 ```javascript
-// Parâmetros de objeto
-function criarUsuario({ nome, email, idade = 18 }) {
+// Object parameters
+function createUser({ name, email, age = 18 }) {
   return {
     id: Math.random(),
-    nome,
+    name,
     email,
-    idade,
-    criadoEm: new Date()
+    age,
+    createdAt: new Date()
   };
 }
 
-const novoUsuario = criarUsuario({
-  nome: 'Ana',
-  email: 'ana@email.com'
+const newUser = createUser({
+  name: 'Anna',
+  email: 'anna@email.com'
 });
 
-// Parâmetros de array
-function calcular([a, b, operacao = 'soma']) {
-  switch (operacao) {
-    case 'soma': return a + b;
-    case 'subtracao': return a - b;
-    case 'multiplicacao': return a * b;
-    case 'divisao': return a / b;
+// Array parameters
+function calculate([a, b, operation = 'add']) {
+  switch (operation) {
+    case 'add': return a + b;
+    case 'subtract': return a - b;
+    case 'multiply': return a * b;
+    case 'divide': return a / b;
     default: return 0;
   }
 }
 
-const resultado = calcular([10, 5, 'multiplicacao']); // 50
+const result = calculate([10, 5, 'multiply']); // 50
 ```
 
-## Destructuring no React
+## Destructuring in React
 
-No React, o destructuring é amplamente utilizado para trabalhar com props, state e hooks.
+In React, destructuring is widely used for working with props, state, and hooks.
 
-### Destructuring de Props
+### Props Destructuring
 
 ```jsx
-// Componente filho
-function PerfilUsuario({ nome, email, avatar, idade = 'Não informado' }) {
+// Child component
+function UserProfile({ name, email, avatar, age = 'Not provided' }) {
   return (
-    <div className="perfil">
-      <img src={avatar} alt={`Avatar de ${nome}`} />
-      <h2>{nome}</h2>
+    <div className="profile">
+      <img src={avatar} alt={`${name}'s avatar`} />
+      <h2>{name}</h2>
       <p>Email: {email}</p>
-      <p>Idade: {idade}</p>
+      <p>Age: {age}</p>
     </div>
   );
 }
 
-// Componente pai
+// Parent component
 function App() {
-  const usuario = {
-    nome: 'Carlos',
+  const user = {
+    name: 'Carlos',
     email: 'carlos@email.com',
     avatar: '/avatar.jpg',
-    idade: 28
+    age: 28
   };
 
-  return <PerfilUsuario {...usuario} />;
+  return <UserProfile {...user} />;
 }
 ```
 
-### Destructuring com Hooks
+### Destructuring with Hooks
 
 ```jsx
 import React, { useState, useEffect } from 'react';
 
-function ContadorAvancado() {
-  // Destructuring do useState
-  const [contador, setContador] = useState(0);
-  const [historico, setHistorico] = useState([]);
+function AdvancedCounter() {
+  // useState destructuring
+  const [counter, setCounter] = useState(0);
+  const [history, setHistory] = useState([]);
 
-  // Destructuring em objetos de estado mais complexos
-  const [usuario, setUsuario] = useState({
-    nome: '',
-    pontuacao: 0,
-    nivel: 1
+  // Destructuring in more complex state objects
+  const [user, setUser] = useState({
+    name: '',
+    score: 0,
+    level: 1
   });
 
-  const { nome, pontuacao, nivel } = usuario;
+  const { name, score, level } = user;
 
-  const incrementar = () => {
-    setContador(prev => prev + 1);
-    setHistorico(prev => [...prev, contador + 1]);
+  const increment = () => {
+    setCounter(prev => prev + 1);
+    setHistory(prev => [...prev, counter + 1]);
     
-    // Usando destructuring para atualizar estado
-    setUsuario(prev => ({
+    // Using destructuring to update state
+    setUser(prev => ({
       ...prev,
-      pontuacao: prev.pontuacao + 10
+      score: prev.score + 10
     }));
   };
 
   return (
     <div>
-      <h3>Contador: {contador}</h3>
-      <h4>Usuário: {nome}</h4>
-      <p>Pontuação: {pontuacao} | Nível: {nivel}</p>
-      <button onClick={incrementar}>Incrementar</button>
+      <h3>Counter: {counter}</h3>
+      <h4>User: {name}</h4>
+      <p>Score: {score} | Level: {level}</p>
+      <button onClick={increment}>Increment</button>
     </div>
   );
 }
 ```
 
-### Destructuring com useContext
+### Destructuring with useContext
 
 ```jsx
 import React, { createContext, useContext } from 'react';
 
-const UsuarioContext = createContext();
+const UserContext = createContext();
 
-function ProviderUsuario({ children }) {
-  const usuario = {
-    nome: 'João',
-    permissoes: ['ler', 'escrever'],
-    tema: 'dark'
+function UserProvider({ children }) {
+  const user = {
+    name: 'John',
+    permissions: ['read', 'write'],
+    theme: 'dark'
   };
 
   return (
-    <UsuarioContext.Provider value={usuario}>
+    <UserContext.Provider value={user}>
       {children}
-    </UsuarioContext.Provider>
+    </UserContext.Provider>
   );
 }
 
-function ComponenteFilho() {
-  // Destructuring do contexto
-  const { nome, permissoes, tema } = useContext(UsuarioContext);
+function ChildComponent() {
+  // Context destructuring
+  const { name, permissions, theme } = useContext(UserContext);
 
   return (
-    <div className={`theme-${tema}`}>
-      <h2>Bem-vindo, {nome}!</h2>
+    <div className={`theme-${theme}`}>
+      <h2>Welcome, {name}!</h2>
       <ul>
-        {permissoes.map(permissao => (
-          <li key={permissao}>Permissão: {permissao}</li>
+        {permissions.map(permission => (
+          <li key={permission}>Permission: {permission}</li>
         ))}
       </ul>
     </div>
@@ -229,57 +229,57 @@ function ComponenteFilho() {
 }
 ```
 
-## Destructuring no Angular
+## Destructuring in Angular
 
-No Angular, o destructuring é útil em componentes, serviços e templates.
+In Angular, destructuring is useful in components, services, and templates.
 
-### Destructuring em Componentes
+### Destructuring in Components
 
 ```typescript
 import { Component, Input } from '@angular/core';
 
-interface Usuario {
+interface User {
   id: number;
-  nome: string;
+  name: string;
   email: string;
-  endereco: {
-    cidade: string;
-    estado: string;
+  address: {
+    city: string;
+    state: string;
   };
 }
 
 @Component({
-  selector: 'app-perfil',
+  selector: 'app-profile',
   template: `
-    <div class="perfil">
-      <h2>{{ nome }}</h2>
+    <div class="profile">
+      <h2>{{ name }}</h2>
       <p>{{ email }}</p>
-      <p>{{ cidade }}, {{ estado }}</p>
+      <p>{{ city }}, {{ state }}</p>
     </div>
   `
 })
-export class PerfilComponent {
-  @Input() usuario!: Usuario;
+export class ProfileComponent {
+  @Input() user!: User;
 
-  nome = '';
+  name = '';
   email = '';
-  cidade = '';
-  estado = '';
+  city = '';
+  state = '';
 
   ngOnInit() {
-    // Destructuring das propriedades do usuário
-    const { nome, email, endereco } = this.usuario;
-    const { cidade, estado } = endereco;
+    // Destructuring user properties
+    const { name, email, address } = this.user;
+    const { city, state } = address;
 
-    this.nome = nome;
+    this.name = name;
     this.email = email;
-    this.cidade = cidade;
-    this.estado = estado;
+    this.city = city;
+    this.state = state;
   }
 }
 ```
 
-### Destructuring em Serviços
+### Destructuring in Services
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -301,115 +301,115 @@ interface ApiResponse {
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  buscarDados(): Observable<any> {
-    return this.http.get<ApiResponse>('/api/dados')
+  fetchData(): Observable<any> {
+    return this.http.get<ApiResponse>('/api/data')
       .pipe(
         map(response => {
-          // Destructuring da resposta
+          // Response destructuring
           const { data, meta } = response;
           const { total, page } = meta;
 
           return {
             items: data,
-            totalItens: total,
-            paginaAtual: page,
-            temMaisPaginas: data.length === meta.limit
+            totalItems: total,
+            currentPage: page,
+            hasMorePages: data.length === meta.limit
           };
         })
       );
   }
 
-  processarUsuarios(usuarios: Usuario[]) {
-    return usuarios.map(usuario => {
-      // Destructuring de cada usuário
-      const { id, nome, email, endereco: { cidade } } = usuario;
+  processUsers(users: User[]) {
+    return users.map(user => {
+      // Destructuring each user
+      const { id, name, email, address: { city } } = user;
       
       return {
         id,
-        nomeCompleto: nome.toUpperCase(),
-        emailFormatado: email.toLowerCase(),
-        localizacao: cidade
+        fullName: name.toUpperCase(),
+        formattedEmail: email.toLowerCase(),
+        location: city
       };
     });
   }
 }
 ```
 
-### Destructuring em Reactive Forms
+### Destructuring in Reactive Forms
 
 ```typescript
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-formulario',
+  selector: 'app-form',
   template: `
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-      <input formControlName="nome" placeholder="Nome">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input formControlName="name" placeholder="Name">
       <input formControlName="email" placeholder="Email">
       
-      <div formGroupName="endereco">
-        <input formControlName="rua" placeholder="Rua">
-        <input formControlName="cidade" placeholder="Cidade">
+      <div formGroupName="address">
+        <input formControlName="street" placeholder="Street">
+        <input formControlName="city" placeholder="City">
       </div>
       
-      <button type="submit">Enviar</button>
+      <button type="submit">Submit</button>
     </form>
   `
 })
-export class FormularioComponent {
-  formulario: FormGroup;
+export class FormComponent {
+  form: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.formulario = this.fb.group({
-      nome: ['', Validators.required],
+    this.form = this.fb.group({
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      endereco: this.fb.group({
-        rua: [''],
-        cidade: ['']
+      address: this.fb.group({
+        street: [''],
+        city: ['']
       })
     });
   }
 
   onSubmit() {
-    if (this.formulario.valid) {
-      // Destructuring dos valores do formulário
-      const { nome, email, endereco } = this.formulario.value;
-      const { rua, cidade } = endereco;
+    if (this.form.valid) {
+      // Destructuring form values
+      const { name, email, address } = this.form.value;
+      const { street, city } = address;
 
-      const dadosUsuario = {
-        nomeUsuario: nome,
-        emailContato: email,
-        enderecoCompleto: `${rua}, ${cidade}`
+      const userData = {
+        userName: name,
+        contactEmail: email,
+        fullAddress: `${street}, ${city}`
       };
 
-      console.log('Dados do usuário:', dadosUsuario);
+      console.log('User data:', userData);
     }
   }
 }
 ```
 
-## Destructuring no Vue.js
+## Destructuring in Vue.js
 
-No Vue, o destructuring é útil tanto na Options API quanto na Composition API.
+In Vue, destructuring is useful in both the Options API and Composition API.
 
 ### Vue 2 - Options API
 
 ```vue
 <template>
-  <div class="usuario-perfil">
-    <h2>{{ nomeUsuario }}</h2>
-    <p>{{ emailUsuario }}</p>
-    <p>{{ cidadeUsuario }}, {{ estadoUsuario }}</p>
+  <div class="user-profile">
+    <h2>{{ userName }}</h2>
+    <p>{{ userEmail }}</p>
+    <p>{{ userCity }}, {{ userState }}</p>
     
-    <div class="configuracoes">
+    <div class="settings">
       <label>
-        <input v-model="tema" type="checkbox">
-        Tema escuro
+        <input v-model="theme" type="checkbox">
+        Dark theme
       </label>
       <label>
-        <input v-model="notificacoes" type="checkbox">
-        Receber notificações
+        <input v-model="notifications" type="checkbox">
+        Receive notifications
       </label>
     </div>
   </div>
@@ -417,63 +417,63 @@ No Vue, o destructuring é útil tanto na Options API quanto na Composition API.
 
 <script>
 export default {
-  name: 'UsuarioPerfil',
+  name: 'UserProfile',
   props: {
-    usuario: {
+    user: {
       type: Object,
       required: true
     }
   },
   data() {
     return {
-      tema: false,
-      notificacoes: true
+      theme: false,
+      notifications: true
     };
   },
   computed: {
-    // Destructuring nos computed
+    // Destructuring in computed
     ...(() => {
-      const { nome, email, endereco } = this.usuario || {};
-      const { cidade, estado } = endereco || {};
+      const { name, email, address } = this.user || {};
+      const { city, state } = address || {};
       
       return {
-        nomeUsuario: () => nome,
-        emailUsuario: () => email,
-        cidadeUsuario: () => cidade,
-        estadoUsuario: () => estado
+        userName: () => name,
+        userEmail: () => email,
+        userCity: () => city,
+        userState: () => state
       };
     })(),
     
-    configuracoes() {
-      const { tema, notificacoes } = this;
-      return { tema, notificacoes };
+    settings() {
+      const { theme, notifications } = this;
+      return { theme, notifications };
     }
   },
   methods: {
-    async salvarConfiguracoes() {
+    async saveSettings() {
       try {
-        const { tema, notificacoes } = this.configuracoes;
-        const { id } = this.usuario;
+        const { theme, notifications } = this.settings;
+        const { id } = this.user;
         
-        const dados = {
-          usuarioId: id,
-          preferencias: { tema, notificacoes }
+        const data = {
+          userId: id,
+          preferences: { theme, notifications }
         };
         
-        await this.$http.post('/api/configuracoes', dados);
-        this.$emit('configuracoes-salvas', dados);
+        await this.$http.post('/api/settings', data);
+        this.$emit('settings-saved', data);
       } catch (error) {
-        console.error('Erro ao salvar:', error);
+        console.error('Error saving:', error);
       }
     }
   },
   created() {
-    // Destructuring no lifecycle
-    const { configuracoes } = this.usuario;
-    if (configuracoes) {
-      const { tema, notificacoes } = configuracoes;
-      this.tema = tema;
-      this.notificacoes = notificacoes;
+    // Destructuring in lifecycle
+    const { settings } = this.user;
+    if (settings) {
+      const { theme, notifications } = settings;
+      this.theme = theme;
+      this.notifications = notifications;
     }
   }
 };
@@ -485,7 +485,7 @@ export default {
 ```vue
 <template>
   <div class="dashboard">
-    <h1>Dashboard de {{ nomeUsuario }}</h1>
+    <h1>{{ userName }}'s Dashboard</h1>
     
     <div class="stats">
       <div class="stat-card">
@@ -493,94 +493,94 @@ export default {
         <p>{{ totalPosts }}</p>
       </div>
       <div class="stat-card">
-        <h3>Seguidores</h3>
-        <p>{{ totalSeguidores }}</p>
+        <h3>Followers</h3>
+        <p>{{ totalFollowers }}</p>
       </div>
     </div>
 
-    <div class="configuracoes">
-      <button @click="alternarTema">
-        Tema: {{ tema }}
+    <div class="settings">
+      <button @click="toggleTheme">
+        Theme: {{ theme }}
       </button>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, computed, reactive, onMounted, watch } from 'vue';
+import { ref, computed, reactive, onMounted, watch, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default {
   name: 'Dashboard',
   props: {
-    usuario: Object
+    user: Object
   },
   setup(props, { emit }) {
     const router = useRouter();
     
-    // Destructuring das props reativas
-    const { usuario } = toRefs(props);
+    // Destructuring reactive props
+    const { user } = toRefs(props);
     
-    // Estado reativo
-    const estado = reactive({
-      tema: 'claro',
+    // Reactive state
+    const state = reactive({
+      theme: 'light',
       loading: false,
-      estatisticas: {
+      statistics: {
         posts: 0,
-        seguidores: 0,
-        seguindo: 0
+        followers: 0,
+        following: 0
       }
     });
 
-    // Destructuring do estado
-    const { tema, loading, estatisticas } = toRefs(estado);
+    // State destructuring
+    const { theme, loading, statistics } = toRefs(state);
 
-    // Computed com destructuring
-    const dadosUsuario = computed(() => {
-      if (!usuario.value) return {};
+    // Computed with destructuring
+    const userData = computed(() => {
+      if (!user.value) return {};
       
-      const { nome, email, perfil } = usuario.value;
-      const { bio, avatar } = perfil || {};
+      const { name, email, profile } = user.value;
+      const { bio, avatar } = profile || {};
       
       return {
-        nomeUsuario: nome,
-        emailUsuario: email,
-        bioUsuario: bio,
-        avatarUsuario: avatar
+        userName: name,
+        userEmail: email,
+        userBio: bio,
+        userAvatar: avatar
       };
     });
 
-    const { nomeUsuario, emailUsuario } = dadosUsuario.value;
+    const { userName, userEmail } = userData.value;
 
-    const estatisticasComputadas = computed(() => {
-      const { posts, seguidores } = estatisticas.value;
+    const computedStats = computed(() => {
+      const { posts, followers } = statistics.value;
       return {
         totalPosts: posts,
-        totalSeguidores: seguidores,
-        engajamento: posts > 0 ? (seguidores / posts).toFixed(2) : 0
+        totalFollowers: followers,
+        engagement: posts > 0 ? (followers / posts).toFixed(2) : 0
       };
     });
 
-    const { totalPosts, totalSeguidores } = estatisticasComputadas.value;
+    const { totalPosts, totalFollowers } = computedStats.value;
 
-    // Métodos
-    const alternarTema = () => {
-      tema.value = tema.value === 'claro' ? 'escuro' : 'claro';
+    // Methods
+    const toggleTheme = () => {
+      theme.value = theme.value === 'light' ? 'dark' : 'light';
     };
 
-    const carregarEstatisticas = async () => {
+    const loadStatistics = async () => {
       try {
         loading.value = true;
-        const { id } = usuario.value;
+        const { id } = user.value;
         
-        const response = await fetch(`/api/usuarios/${id}/stats`);
-        const { posts, seguidores, seguindo } = await response.json();
+        const response = await fetch(`/api/users/${id}/stats`);
+        const { posts, followers, following } = await response.json();
         
-        // Atualização com destructuring
-        Object.assign(estatisticas.value, { posts, seguidores, seguindo });
+        // Update with destructuring
+        Object.assign(statistics.value, { posts, followers, following });
         
       } catch (error) {
-        console.error('Erro ao carregar estatísticas:', error);
+        console.error('Error loading statistics:', error);
       } finally {
         loading.value = false;
       }
@@ -588,10 +588,10 @@ export default {
 
     // Watchers
     watch(
-      () => usuario.value?.id,
-      (novoId) => {
-        if (novoId) {
-          carregarEstatisticas();
+      () => user.value?.id,
+      (newId) => {
+        if (newId) {
+          loadStatistics();
         }
       },
       { immediate: true }
@@ -599,139 +599,139 @@ export default {
 
     // Lifecycle
     onMounted(() => {
-      // Destructuring de configurações salvas
-      const configSalvas = localStorage.getItem('configuracoes');
-      if (configSalvas) {
-        const { tema: temaSalvo } = JSON.parse(configSalvas);
-        tema.value = temaSalvo;
+      // Destructuring saved settings
+      const savedConfig = localStorage.getItem('settings');
+      if (savedConfig) {
+        const { theme: savedTheme } = JSON.parse(savedConfig);
+        theme.value = savedTheme;
       }
     });
 
     return {
-      // Destructuring no retorno
-      ...dadosUsuario.value,
-      ...estatisticasComputadas.value,
-      tema,
+      // Destructuring in return
+      ...userData.value,
+      ...computedStats.value,
+      theme,
       loading,
-      alternarTema,
-      carregarEstatisticas
+      toggleTheme,
+      loadStatistics
     };
   }
 };
 </script>
 ```
 
-## Casos de Uso Avançados
+## Advanced Use Cases
 
-### Destructuring com Map, Filter e Reduce
+### Destructuring with Map, Filter, and Reduce
 
 ```javascript
-const usuarios = [
-  { id: 1, nome: 'Ana', idade: 25, ativo: true },
-  { id: 2, nome: 'Bruno', idade: 30, ativo: false },
-  { id: 3, nome: 'Carla', idade: 28, ativo: true }
+const users = [
+  { id: 1, name: 'Anna', age: 25, active: true },
+  { id: 2, name: 'Bruno', age: 30, active: false },
+  { id: 3, name: 'Carla', age: 28, active: true }
 ];
 
-// Map com destructuring
-const nomes = usuarios.map(({ nome }) => nome);
+// Map with destructuring
+const names = users.map(({ name }) => name);
 
-// Filter com destructuring
-const usuariosAtivos = usuarios.filter(({ ativo }) => ativo);
+// Filter with destructuring
+const activeUsers = users.filter(({ active }) => active);
 
-// Reduce com destructuring
-const somaIdades = usuarios.reduce((soma, { idade }) => soma + idade, 0);
+// Reduce with destructuring
+const ageSum = users.reduce((sum, { age }) => sum + age, 0);
 
-// Destructuring mais complexo
-const resumoUsuarios = usuarios
-  .filter(({ ativo }) => ativo)
-  .map(({ nome, idade }) => ({ nome, categoria: idade > 26 ? 'senior' : 'junior' }));
+// More complex destructuring
+const userSummary = users
+  .filter(({ active }) => active)
+  .map(({ name, age }) => ({ name, category: age > 26 ? 'senior' : 'junior' }));
 ```
 
-### Destructuring com Async/Await
+### Destructuring with Async/Await
 
 ```javascript
-async function buscarDadosUsuario(id) {
+async function fetchUserData(id) {
   try {
-    const response = await fetch(`/api/usuarios/${id}`);
+    const response = await fetch(`/api/users/${id}`);
     
-    // Destructuring da resposta
+    // Response destructuring
     const { data, meta, errors } = await response.json();
     
     if (errors) {
-      const [primeiroErro] = errors;
-      throw new Error(primeiroErro.message);
+      const [firstError] = errors;
+      throw new Error(firstError.message);
     }
 
-    // Destructuring dos dados do usuário
+    // User data destructuring
     const {
-      nome,
+      name,
       email,
-      perfil: { avatar, bio },
-      configuracoes: { tema, idioma }
+      profile: { avatar, bio },
+      settings: { theme, language }
     } = data;
 
     return {
-      usuario: { nome, email, avatar, bio },
-      preferencias: { tema, idioma },
+      user: { name, email, avatar, bio },
+      preferences: { theme, language },
       metadata: meta
     };
     
   } catch (error) {
-    console.error('Erro ao buscar usuário:', error);
+    console.error('Error fetching user:', error);
     return null;
   }
 }
 ```
 
-## Armadilhas Comuns e Como Evitá-las
+## Common Pitfalls and How to Avoid Them
 
-### 1. Destructuring de Valores Undefined
-
-```javascript
-// ❌ Problemático
-const usuario = null;
-const { nome, email } = usuario; // TypeError
-
-// ✅ Solução
-const { nome, email } = usuario || {};
-const { nome, email } = usuario ?? {};
-```
-
-### 2. Destructuring Aninhado com Valores Ausentes
+### 1. Destructuring Undefined Values
 
 ```javascript
-// ❌ Problemático
-const usuario = { nome: 'João' }; // sem endereco
-const { endereco: { cidade } } = usuario; // TypeError
+// ❌ Problematic
+const user = null;
+const { name, email } = user; // TypeError
 
-// ✅ Solução
-const { endereco: { cidade } = {} } = usuario || {};
+// ✅ Solution
+const { name, email } = user || {};
+const { name, email } = user ?? {};
 ```
 
-### 3. Confusion com Nomes de Variáveis
+### 2. Nested Destructuring with Missing Values
 
 ```javascript
-// ❌ Pode gerar confusão
-const { nome: nome, email: email } = usuario;
+// ❌ Problematic
+const user = { name: 'John' }; // no address
+const { address: { city } } = user; // TypeError
 
-// ✅ Mais claro
-const { nome, email } = usuario;
-// ou
-const { nome: nomeUsuario, email: emailUsuario } = usuario;
+// ✅ Solution
+const { address: { city } = {} } = user || {};
 ```
 
-## Benefícios do Destructuring
+### 3. Variable Name Confusion
 
-1. **Código mais limpo**: Reduz a verbosidade
-2. **Melhor legibilidade**: Torna as intenções mais claras
-3. **Menos erros**: Reduz repetição de código
-4. **Performance**: Evita múltiplos acessos a propriedades
-5. **Flexibilidade**: Facilita refatoração e manutenção
+```javascript
+// ❌ Can be confusing
+const { name: name, email: email } = user;
 
-## Conclusão
+// ✅ Clearer
+const { name, email } = user;
+// or
+const { name: userName, email: userEmail } = user;
+```
 
-O destructuring assignment é uma feature fundamental do JavaScript moderno que melhora significativamente a qualidade e legibilidade do código. Seja trabalhando com React, Angular, Vue ou JavaScript puro, dominar essa técnica é essencial para escrever código mais eficiente e mantível.
+## Benefits of Destructuring
 
-Nos frameworks modernos, o destructuring é especialmente poderoso quando combinado com hooks (React), serviços (Angular) ou a Composition API (Vue). Pratique esses exemplos e incorpore o destructuring em seus projetos para ver a diferença na qualidade do seu código.
+1. **Cleaner code**: Reduces verbosity
+2. **Better readability**: Makes intentions clearer
+3. **Fewer errors**: Reduces code repetition
+4. **Performance**: Avoids multiple property accesses
+5. **Flexibility**: Makes refactoring and maintenance easier
 
-Lembre-se sempre de considerar os casos edge, como valores undefined ou null, e use as técnicas defensivas mostradas neste artigo para evitar erros em runtime.
+## Conclusion
+
+Destructuring assignment is a fundamental feature of modern JavaScript that significantly improves code quality and readability. Whether working with React, Angular, Vue, or vanilla JavaScript, mastering this technique is essential for writing more efficient and maintainable code.
+
+In modern frameworks, destructuring is especially powerful when combined with hooks (React), services (Angular), or the Composition API (Vue). Practice these examples and incorporate destructuring into your projects to see the difference in your code quality.
+
+Always remember to consider edge cases, such as undefined or null values, and use the defensive techniques shown in this article to avoid runtime errors.
