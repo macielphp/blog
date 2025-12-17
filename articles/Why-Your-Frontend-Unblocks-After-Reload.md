@@ -15,7 +15,7 @@ tags: [
 ]
 date: "2025-12-16"
 author: "Maciel Alves"
-image: "https://github.com/macielphp/blog/blob/main/assets/279ee680.webp.webp?raw=true"
+image: "https://github.com/macielphp/blog/blob/main/assets/279ee680.webp?raw=true"
 readTime: "8 min"
 ---
 # Why Your Frontend “Unblocks” After Reload — and Why That’s Actually Correct
