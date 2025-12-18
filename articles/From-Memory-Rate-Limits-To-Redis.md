@@ -1,7 +1,7 @@
 ---
 title: "From Memory Rate Limits to Redis: Production-Ready Login Protection with Express"
 description: "How to implement a real Redis-backed rate limit for admin login, ready for cloud and production"
-tags: ["redis", "rate limiting", "express", "nodejs", "security", "backend", "vercel", "cockroachdb"]
+tags: ["redis", "rate-limiting", "express", "nodejs", "security", "backend", "vercel", "cockroachdb"]
 date: "2025-12-18"
 author: "Maciel Alves"
 image: "https://github.com/macielphp/blog/blob/main/assets/redisAndExpressjsRateLimit.webp?raw=true"
