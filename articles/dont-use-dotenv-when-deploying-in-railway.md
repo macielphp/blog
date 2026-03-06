@@ -32,7 +32,7 @@ I went to Resend to check the activity of the API key and it looked good. No err
 
 Claude even helped me with some PORT hard code. 
 
-## Questioning code
+## Questioning the code
 The first thing I questioned was whether the path configured in dotenv.config was correct.
 
 ```js
