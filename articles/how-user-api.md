@@ -1,3 +1,13 @@
+---
+title: "How to Design URLs for a Product API"
+description: "A Practical Guide with the Self-Development-Room Case Study"
+tags: ["javascript", "back-end", "express.js", "node.js", "architecture"]
+date: "2026-03-06"
+author: "Maciel Alves"
+image: "https://github.com/macielphp/blog/blob/main/assets/urls-design.webp?raw=true"
+readTime: "2 min"
+---
+
 # How to Design URLs for a Product API  
 ### A Practical Guide with the Self-Development-Room Case Study
 
@@ -307,7 +317,4 @@ Designing URLs this way makes your API:
 * Easier to secure
 
 ---
-
-**Project:** Self-Development-Room
-**Topics:** API Design, REST, Product API, Backend Architecture, Node.js
 
