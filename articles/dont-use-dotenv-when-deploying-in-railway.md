@@ -23,9 +23,9 @@ I asked Claude and Grok to help me solve the problem. They also told me I had to
 
 - Would it be wrong? 
 - "No". 
-- Why?
+- Why? 
 - Because the local API and Supabase DB worked before with the same code. 
-
+  
 I went to Resend to check the activity of the API key and it looked good. No errors.
 
 <img src="./../assets/resend-api-key-activity.png" />

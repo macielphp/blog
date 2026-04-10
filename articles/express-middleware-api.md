@@ -1,5 +1,5 @@
 ---
-title: "From Memory Rate Limits to Redis: Production-Ready Login Protection with Express"
+title: "Express Middleware: Product API vs CRUD API"
 description: "How to implement a real Redis-backed rate limit for admin login, ready for cloud and production"
 tags: ["redis", "rate-limiting", "express", "nodejs", "security", "backend", "vercel", "cockroachdb"]
 date: "2025-12-18"
