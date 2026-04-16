@@ -4,7 +4,7 @@ description: "Expired JWT tokens and refresh tokens are silently bloating your P
 tags: ["nodejs", "postgresql", "jwt", "authentication", "railway", "cron", "backend"]
 date: "2026-04-16"
 author: "Maciel Alves"
-image: "https://github.com/macielphp/blog/blob/main/assets/cron.webp?raw=true"  # Replace with your actual image path if you have one
+image: "https://github.com/macielphp/blog/blob/main/assets/cron.webp?raw=true" 
 readTime: "8 min"
 ---
 
